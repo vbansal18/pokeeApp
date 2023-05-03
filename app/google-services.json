@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "649121519570",
+    "project_id": "pokee-962d8",
+    "storage_bucket": "pokee-962d8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:649121519570:android:1bdab39430507ee3a69a0b",
+        "android_client_info": {
+          "package_name": "com.example.pokee"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "649121519570-ngl548lfil467amte9mfhvghd2vmosnf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmWnXBpeZL6mOq4CzMDTk0swGJpH7Ni-A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "649121519570-ngl548lfil467amte9mfhvghd2vmosnf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
