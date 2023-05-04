@@ -29,6 +29,8 @@ public class LastName extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        Bundle bundle = this.getArguments();
+
         view = inflater.inflate(R.layout.fragment_last_name, container, false);
         activity = (MainActivity) getActivity();
         Button next_btn = view.findViewById(R.id.next_btn2);
@@ -45,7 +47,11 @@ public class LastName extends Fragment {
             activity.hideKeyboard(editText);
             if (!editText.getText().toString().isEmpty()) {
 
+                bundle.putString("last_name",editText.getText().toString()); // Put anything what you want
+
                 UserName fragment2 = new UserName();
+                fragment2.setArguments(bundle);
+
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.frame_layout, fragment2);

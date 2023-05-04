@@ -1,19 +1,17 @@
 package com.example.pokee.phone_fragments;
 
+import android.graphics.Color;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+
+import androidx.fragment.app.Fragment;
 
 import com.example.pokee.MainActivity;
-import com.example.pokee.R;
-import com.example.pokee.databinding.FragmentPhoneNumBinding;
 import com.example.pokee.databinding.FragmentPhoneVerificationBinding;
+import com.example.pokee.util.GenericTextWatcher;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 
@@ -23,7 +21,7 @@ public class PhoneVerificationFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState)  {
+                             Bundle savedInstanceState) {
         binding = FragmentPhoneVerificationBinding.inflate(inflater, container, false);
 
         MainActivity activity = (MainActivity) getActivity();
@@ -40,6 +38,12 @@ public class PhoneVerificationFragment extends Fragment {
 
             activity.signInWithPhoneAuthCredential(credential);
         });
+
+        binding.verificationCode1.addTextChangedListener(new GenericTextWatcher(binding.verificationCode2));
+        binding.verificationCode2.addTextChangedListener(new GenericTextWatcher(binding.verificationCode3));
+        binding.verificationCode3.addTextChangedListener(new GenericTextWatcher(binding.verificationCode4));
+        binding.verificationCode4.addTextChangedListener(new GenericTextWatcher(binding.verificationCode5));
+        binding.verificationCode5.addTextChangedListener(new GenericTextWatcher(binding.verificationCode6));
 
         return binding.getRoot();
     }

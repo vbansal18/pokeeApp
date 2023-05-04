@@ -1,5 +1,6 @@
 package com.example.pokee.phone_fragments;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -43,13 +44,13 @@ public class PhoneNumFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentPhoneNumBinding.inflate(inflater, container, false);
-
         MainActivity activity = (MainActivity) getActivity();
-
 
 
         binding.nextBtn.setOnClickListener(v -> {
             if(binding.phoneNumber.getText().toString().length()!=10){
+                ((Button) v).setBackgroundColor(Color.RED);
+
 
                 Log.d("PHONE", binding.phoneNumber.getText().toString());
                 binding.phoneNumber.setError("invalid phone");
@@ -57,6 +58,7 @@ public class PhoneNumFragment extends Fragment {
             else{
 
                 activity.otpSend(binding.phoneNumber.getText().toString().trim());
+
 
 
             }

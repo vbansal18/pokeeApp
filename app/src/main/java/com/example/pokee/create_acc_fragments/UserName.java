@@ -2,21 +2,29 @@ package com.example.pokee.create_acc_fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
 
 import com.example.pokee.MainActivity;
 import com.example.pokee.R;
+import com.example.pokee.RetrofitService;
 import com.example.pokee.UserActivity;
+import com.example.pokee.model.UserBody;
+import com.example.pokee.model.UserResponse;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class UserName extends Fragment {
     View view;
@@ -26,9 +34,13 @@ public class UserName extends Fragment {
 //    String last_name = arguments.getString("last_name");
 
     Handler handler;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        Bundle bundle = this.getArguments();
+
 
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_user_name, container, false);
@@ -47,13 +59,48 @@ public class UserName extends Fragment {
         next_btn.setOnClickListener(v -> {
             activity.hideKeyboard(editText);
             if (!editText.getText().toString().isEmpty()) {
-
-                Intent myIntent = new Intent(getActivity().getBaseContext(), UserActivity.class);
-                getActivity().startActivity(myIntent);
+                bundle.putString("user_name", editText.getText().toString()); // Put anything what you want
 
 
+                Retrofit retrofit = new Retrofit.Builder()
+                        .baseUrl("http://user-service.pokee.app/v1/user/")
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
 
-            }else {
+
+                RetrofitService requestUser = retrofit.create(RetrofitService.class);
+
+                Log.d("FFFF", bundle.getString("first_name"));
+
+                requestUser.postUser(new UserBody(
+//                        bundle.getString("id"),
+//                        bundle.getString("first_name"),
+//                        bundle.getString("last_name"),
+//                        bundle.getString("user_name"),
+//                        bundle.getString("phone_number")
+                        "dlfkj4589sdjhhl",
+                        "Vaibhav",
+                        "Bansal",
+                        "bansu1001",
+                        "+918388908302"
+                )).enqueue(new Callback<UserResponse>() {
+
+                    @Override
+                    public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
+                        Log.d("RETROFIT", String.valueOf(response.code()));
+                        Intent myIntent = new Intent(getContext(), UserActivity.class);
+                        myIntent.putExtras(bundle);
+                        getActivity().startActivity(myIntent);
+                    }
+
+                    @Override
+                    public void onFailure(Call<UserResponse> call, Throwable t) {
+                        Log.d("RETROFIT", t.getMessage());
+                        Toast.makeText(getContext(), "Error occured: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+            } else {
                 editText.setError("blank field");
             }
         });

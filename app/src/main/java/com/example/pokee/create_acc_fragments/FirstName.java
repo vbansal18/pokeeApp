@@ -43,7 +43,14 @@ public class FirstName extends Fragment {
             activity.hideKeyboard(editText);
             if (!editText.getText().toString().isEmpty()) {
 
+
+//                Bundle bundle = this.getArguments();
+                Bundle bundle = new Bundle();
+                bundle.putString("first_name",editText.getText().toString()); // Put anything what you want
+
                 LastName fragment2 = new LastName();
+                fragment2.setArguments(bundle);
+
                 FragmentManager fragmentManager = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.frame_layout, fragment2);

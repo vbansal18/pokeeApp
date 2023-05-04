@@ -14,6 +14,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import com.example.pokee.create_acc_fragments.FirstName;
+import com.example.pokee.create_acc_fragments.LastName;
 import com.example.pokee.create_acc_fragments.UserName;
 import com.example.pokee.databinding.ActivityMainBinding;
 import com.example.pokee.phone_fragments.PhoneNumFragment;
@@ -34,9 +35,10 @@ import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Firebase firebase;
     private FirebaseAuth mAuth;
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
+
+    Bundle bundle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,9 +47,10 @@ public class MainActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
+        bundle = new Bundle();
         mAuth = FirebaseAuth.getInstance();
 
-        replaceFragment(new FirstName());
+        replaceFragment(new PhoneNumFragment());
 
     }
 
@@ -79,7 +82,6 @@ public class MainActivity extends AppCompatActivity {
                                    @NonNull PhoneAuthProvider.ForceResendingToken token) {
                 Toast.makeText(getApplicationContext(), "Verification code sent!", Toast.LENGTH_SHORT).show();
 
-                Bundle bundle = new Bundle();
                 bundle.putString("verificationId", verificationId);
 
                 PhoneVerificationFragment phoneVerificationFragment = new PhoneVerificationFragment();
@@ -109,8 +111,15 @@ public class MainActivity extends AppCompatActivity {
                             Log.d("PHONE", "signInWithCredential:success");
 
                             FirebaseUser user = task.getResult().getUser();
-                            replaceFragment(new FirstName());
+                            bundle.putString("phone_number", user.getPhoneNumber());
+                            bundle.putString("id", user.getUid());
 
+                            FirstName fragment2 = new FirstName();
+                            fragment2.setArguments(bundle);
+
+                            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                            fragmentTransaction.replace(R.id.frame_layout, fragment2);
+                            fragmentTransaction.commit();
 
 
                         } else {
