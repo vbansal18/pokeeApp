@@ -1,5 +1,6 @@
 package com.example.pokee.phone_fragments;
 
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -8,6 +9,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,11 +50,32 @@ public class PhoneNumFragment extends Fragment {
         binding = FragmentPhoneNumBinding.inflate(inflater, container, false);
         MainActivity activity = (MainActivity) getActivity();
 
+        binding.phoneNumber.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if (!TextUtils.isEmpty(binding.phoneNumber.getText().toString())) {
+                    binding.phoneNumber.setBackgroundTintList(ColorStateList.valueOf(Color.argb(100,239,108,0)));
+                    binding.nextBtn.setBackgroundColor(Color.argb(100,239,108,0));// set here your backgournd to button
+                }
+                else{
+                    binding.phoneNumber.setBackgroundTintList(ColorStateList.valueOf(Color.argb(100,136,136,136)));
+                    binding.nextBtn.setBackgroundColor(Color.argb(100,136,136,136));// set here your backgournd to button
+                }
+            }
+        });
 
         binding.nextBtn.setOnClickListener(v -> {
             if(binding.phoneNumber.getText().toString().length()!=10){
-                ((Button) v).setBackgroundColor(Color.RED);
-
 
                 Log.d("PHONE", binding.phoneNumber.getText().toString());
                 binding.phoneNumber.setError("invalid phone");

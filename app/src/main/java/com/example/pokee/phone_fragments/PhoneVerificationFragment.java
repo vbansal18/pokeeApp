@@ -1,7 +1,11 @@
 package com.example.pokee.phone_fragments;
 
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +36,30 @@ public class PhoneVerificationFragment extends Fragment {
             verificationId = bundle.getString("verificationId");
         }
 
+        binding.verificationCode1.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if (!TextUtils.isEmpty(binding.verificationCode1.getText().toString())) {
+                    binding.verificationCode1.setBackgroundTintList(ColorStateList.valueOf(Color.argb(100,239,108,0)));
+                    binding.verifyBtn.setBackgroundColor(Color.argb(100,239,108,0));// set here your backgournd to button
+                }
+                else{
+                    binding.verificationCode1.setBackgroundTintList(ColorStateList.valueOf(Color.argb(100,136,136,136)));
+                    binding.verifyBtn.setBackgroundColor(Color.argb(100,136,136,136));// set here your backgournd to button
+                }
+            }
+        });
+        
         binding.verifyBtn.setOnClickListener(v -> {
             String code = binding.verificationCode1.getText().toString() + binding.verificationCode2.getText().toString() + binding.verificationCode3.getText().toString() + binding.verificationCode4.getText().toString() + binding.verificationCode5.getText().toString() + binding.verificationCode6.getText().toString();
             PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationId, code);

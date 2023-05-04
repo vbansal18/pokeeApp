@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         bundle = new Bundle();
         mAuth = FirebaseAuth.getInstance();
 
-        replaceFragment(new PhoneNumFragment());
+        replaceFragment(new FirstScreenFragment());
 
     }
 
