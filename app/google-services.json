@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "649121519570",
+    "firebase_url": "https://pokee-962d8-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "pokee-962d8",
     "storage_bucket": "pokee-962d8.appspot.com"
   },
@@ -13,6 +14,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "649121519570-1q72c9ggmsphad73qvch6phephr9bmh0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.pokee",
+            "certificate_hash": "6a2af2ee15b37a48c7f096410e341bb979e3ad2d"
+          }
+        },
         {
           "client_id": "649121519570-ngl548lfil467amte9mfhvghd2vmosnf.apps.googleusercontent.com",
           "client_type": 3

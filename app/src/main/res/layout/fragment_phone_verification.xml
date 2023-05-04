@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".phone_fragments.PhoneVerification">
+    tools:context=".phone_fragments.PhoneVerificationFragment">
 
     <TextView
         android:id="@+id/verification_textview"
@@ -22,88 +22,118 @@
         app:layout_constraintVertical_bias="0.25" />
 
     <EditText
-        android:id="@+id/verification_code"
-        android:layout_width="match_parent"
+        android:id="@+id/verification_code1"
+        android:layout_width="40dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="80dp"
-        android:layout_marginRight="80dp"
         android:gravity="center"
-        android:inputType="phone"
+        android:inputType="number"
+        android:maxLength="1"
         android:textAlignment="center"
         android:textSize="17sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/verification_code2"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/verification_textview"
-        app:layout_constraintVertical_bias="0.15" />
+        app:layout_constraintTop_toBottomOf="@id/verification_textview" />
+
+    <EditText
+        android:id="@+id/verification_code2"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:inputType="number"
+        android:maxLength="1"
+        android:textAlignment="center"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toStartOf="@+id/verification_code3"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/verification_code1"
+        app:layout_constraintTop_toTopOf="@id/verification_code1" />
+
+    <EditText
+        android:id="@+id/verification_code3"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:inputType="number"
+        android:maxLength="1"
+        android:textAlignment="center"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toStartOf="@+id/verification_code4"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/verification_code2"
+        app:layout_constraintTop_toTopOf="@id/verification_code1" />
+
+    <EditText
+        android:id="@+id/verification_code4"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:inputType="number"
+        android:maxLength="1"
+        android:textAlignment="center"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toStartOf="@+id/verification_code5"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/verification_code3"
+        app:layout_constraintTop_toTopOf="@id/verification_code1" />
+
+    <EditText
+        android:id="@+id/verification_code5"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:inputType="number"
+        android:maxLength="1"
+        android:textAlignment="center"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toStartOf="@+id/verification_code6"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/verification_code4"
+        app:layout_constraintTop_toTopOf="@id/verification_code1" />
+
+    <EditText
+        android:id="@+id/verification_code6"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:inputType="number"
+        android:maxLength="1"
+        android:textAlignment="center"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/verification_code5"
+        app:layout_constraintTop_toTopOf="@id/verification_code1" />
+
     <TextView
-        android:id="@+id/incorrect_otp"
+        android:id="@+id/hardcoded_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="80dp"
         android:layout_marginRight="80dp"
         android:gravity="center"
-        android:text="@string/incorrect_otp"
+        android:text="@string/we_will_send_you_a_verification_code"
         android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/verification_code"
-        app:layout_constraintVertical_bias="0.03"/>
+        app:layout_constraintTop_toBottomOf="@id/verification_code1"
+        app:layout_constraintVertical_bias="0" />
 
-    <TextView
-        android:id="@+id/hardcoded_text2"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/verify_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="80dp"
-        android:layout_marginRight="80dp"
-        android:gravity="center"
-        android:text="@string/didn_t_get_the_code_resend"
-        android:textSize="10sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/incorrect_otp"
-        app:layout_constraintVertical_bias="0.03" />
+        android:layout_marginTop="32dp"
+        android:backgroundTint="#545454"
+        android:layout_marginHorizontal="80dp"
+        android:padding="14dp"
+        android:text="@string/verify"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/verification_code1" />
 
-    <TextView
-        android:id="@+id/countdown"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="80dp"
-        android:layout_marginRight="80dp"
-        android:gravity="center"
-        android:text="@string/_60_seconds"
-        android:textSize="10sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/hardcoded_text2"
-        app:layout_constraintVertical_bias="0.02" />
-
-    <com.google.android.material.progressindicator.CircularProgressIndicator
-        android:id="@+id/progress_bar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/countdown"
-        app:layout_constraintVertical_bias="0.1" />
-
-    <TextView
-        android:id="@+id/otp_verifying"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="80dp"
-        android:layout_marginRight="80dp"
-        android:gravity="center"
-        android:text="@string/verifying_otp"
-        android:textSize="10sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/progress_bar"
-        app:layout_constraintVertical_bias="0.03"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

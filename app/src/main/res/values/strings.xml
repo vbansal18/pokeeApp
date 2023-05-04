@@ -18,4 +18,5 @@
     <string name="set_username">Vaibhav Bansal, 24</string>
     <string name="set_userid">bond007</string>
     <string name="verifying_otp">Verifying OTP</string>
+    <string name="verify">Verify</string>
 </resources>

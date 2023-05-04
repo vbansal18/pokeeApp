@@ -4,12 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".User">
+    tools:context=".UserActivity">
+
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/user_image"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
         android:layout_marginTop="50dp"
         android:layout_marginBottom="50dp"
         app:layout_constraintBottom_toTopOf="@id/bar_navigation"
@@ -17,7 +20,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/img"
-        android:scaleType="fitXY"/>
+        android:background="@drawable/user_image_bg"
+        android:scaleType="center"
+        android:clipToOutline="true"
+        tools:ignore="UnusedAttribute" />
 
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/popup_menu"
@@ -28,6 +34,7 @@
         app:layout_constraintEnd_toEndOf="@id/user_image"
         app:layout_constraintTop_toTopOf="@id/user_image"
         android:src="@drawable/popup_icon"
+        android:background="@null"
         android:scaleType="fitXY"/>
 
     <TextView
@@ -63,6 +70,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/user_image"
         app:menu="@menu/bottom_nav_menu"
-        app:itemIconSize="60dp" />
+        app:itemIconSize="50dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
