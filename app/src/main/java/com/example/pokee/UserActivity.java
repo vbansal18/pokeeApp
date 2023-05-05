@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
 import com.example.pokee.model.UserResponse;
 
 import retrofit2.Call;
@@ -32,6 +33,12 @@ public class UserActivity extends AppCompatActivity {
         user_id_text_view = findViewById(R.id.user_id);
         user_image = findViewById(R.id.user_image);
 
+//        Log.d("gfgf", bundle.getString("first_name"));
+//        Log.d("gfgf", bundle.getString("last_name"));
+//        Log.d("gfgf", bundle.getString("user_name"));
+//        Log.d("gfgf", bundle.getString("phone_number"));
+//        Log.d("gfgf", bundle.getString("id"));
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://user-service.pokee.app/v1/user/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -39,13 +46,14 @@ public class UserActivity extends AppCompatActivity {
 
         RetrofitService requestUser = retrofit.create(RetrofitService.class);
 
-        requestUser.getUser("dlfkj4589sdjhhl").enqueue(new Callback<UserResponse>() {
+        requestUser.getUser(bundle.getString("id")).enqueue(new Callback<UserResponse>() {
 
             @Override
             public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                 Log.d("RETROFIT", response.body().getDisplay_name());
                 user_name_text_view.setText(response.body().getDisplay_name());
                 user_id_text_view.setText(response.body().getUser_name());
+                Glide.with(getApplicationContext()).load(response.body().getPhoto_url()).into(user_image);
 
             }
 

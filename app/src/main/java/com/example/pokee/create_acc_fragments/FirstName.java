@@ -70,8 +70,8 @@ public class FirstName extends Fragment {
             if (!binding.firstName.getText().toString().isEmpty()) {
 
 
-//                Bundle bundle = this.getArguments();
-                Bundle bundle = new Bundle();
+                Bundle bundle = this.getArguments();
+//                Bundle bundle = new Bundle();
                 bundle.putString("first_name",binding.firstName.getText().toString()); // Put anything what you want
 
                 LastName fragment2 = new LastName();

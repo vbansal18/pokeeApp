@@ -13,7 +13,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
@@ -56,10 +55,8 @@ public class UserName extends Fragment {
         binding = FragmentUserNameBinding.inflate(inflater, container, false);
         activity = (MainActivity) getActivity();
 
-        Button next_btn = view.findViewById(R.id.next_btn3);
 
-        EditText editText = view.findViewById(R.id.username);
-        editText.requestFocus();
+        binding.username.requestFocus();
         handler = new Handler();
 //        handler.postDelayed(() -> {
 //            ((MainActivity) getActivity()).showKeyboard();
@@ -89,10 +86,13 @@ public class UserName extends Fragment {
         });
 
 
-        next_btn.setOnClickListener(v -> {
-            activity.hideKeyboard(editText);
-            if (!editText.getText().toString().isEmpty()) {
-                bundle.putString("user_name", editText.getText().toString()); // Put anything what you want
+        binding.nextBtn3.setOnClickListener(v -> {
+            Log.d("USERACT", "onCreateView: ");
+
+            activity.hideKeyboard(binding.nextBtn3);
+
+            if (!binding.nextBtn3.getText().toString().isEmpty()) {
+                bundle.putString("user_name", binding.username.getText().toString()); // Put anything what you want
 
 
                 Retrofit retrofit = new Retrofit.Builder()
@@ -103,7 +103,11 @@ public class UserName extends Fragment {
 
                 RetrofitService requestUser = retrofit.create(RetrofitService.class);
 
-                Log.d("FFFF", bundle.getString("first_name"));
+//                Log.d("FFFF", bundle.getString("first_name"));
+//                Log.d("FFFF", bundle.getString("last_name"));
+//                Log.d("FFFF", bundle.getString("user_name"));
+//                Log.d("FFFF", bundle.getString("phone_number"));
+//                Log.d("FFFF", bundle.getString("id"));
 
                 requestUser.postUser(new UserBody(
                         bundle.getString("id"),
@@ -134,7 +138,7 @@ public class UserName extends Fragment {
                 });
 
             } else {
-                editText.setError("blank field");
+                binding.nextBtn3.setError("blank field");
             }
         });
 

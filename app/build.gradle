@@ -59,5 +59,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics'
 
 
+    // Glide library
+    implementation 'com.github.bumptech.glide:glide:4.15.1'
+
 
 }

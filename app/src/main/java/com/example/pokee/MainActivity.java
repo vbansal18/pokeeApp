@@ -50,6 +50,15 @@ public class MainActivity extends AppCompatActivity {
         bundle = new Bundle();
         mAuth = FirebaseAuth.getInstance();
 
+//        bundle.putString("phone_number", "user.getPhoneNumber()");
+////        Log.d("UID", user.getUid());
+//        bundle.putString("id", "user.getUid()");
+//        FirstName fragment2 = new FirstName();
+//                            fragment2.setArguments(bundle);
+//
+//                            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+//                            fragmentTransaction.replace(R.id.frame_layout, fragment2);
+//                            fragmentTransaction.commit();
         replaceFragment(new FirstScreenFragment());
 
     }
@@ -112,6 +121,7 @@ public class MainActivity extends AppCompatActivity {
 
                             FirebaseUser user = task.getResult().getUser();
                             bundle.putString("phone_number", user.getPhoneNumber());
+                            Log.d("UID", user.getUid());
                             bundle.putString("id", user.getUid());
 
                             FirstName fragment2 = new FirstName();
